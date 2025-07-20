@@ -1,17 +1,29 @@
 
 # 🧬 Prediction of Therapeutic Peptides using Deep Learning
 
-This project leverages deep learning models—**LSTM**, **GRU**, and **RNN**—to accurately classify peptide sequences as therapeutic or non-therapeutic. We also implement a novel technique to identify **critical sequence motifs** that contribute to therapeutic potential, enhancing model interpretability and aiding drug discovery.
+This project leverages deep learning models—**LSTM**, **GRU**, and **RNN**—to classify peptide sequences as therapeutic or non-therapeutic. Additionally, it implements an advanced motif analysis system that helps identify critical subsequences affecting therapeutic predictions, improving biological interpretability and aiding peptide-based drug discovery.
+
+## 📌 Table of Contents
+
+- [About the Project](#about-the-project)
+- [Dataset](#dataset)
+- [Model Architectures](#model-architectures)
+- [Training & Evaluation](#training--evaluation)
+- [Critical Motif Identification](#critical-motif-identification)
+- [Results](#results)
+- [How to Run](#how-to-run)
+- [Technologies Used](#technologies-used)
+- [Team Members](#team-members)
+- [License](#license)
 
 ## 🧠 About the Project
 
-Therapeutic peptides are short amino acid sequences with significant pharmaceutical value due to their high specificity and low toxicity. However, identifying such peptides is complex. Our deep learning framework automates this classification by analyzing the peptide sequences and identifying functional motifs.
-
-This project:
-- Trains and compares LSTM, GRU, and RNN models
-- Analyzes over 4000 peptide sequences
-- Achieves high accuracy (up to **92.24%** with LSTM)
-- Identifies biologically significant **critical motifs** through perturbation analysis
+Therapeutic peptides play a pivotal role in modern medicine due to their high specificity and low toxicity. However, discovering such peptides is challenging and computationally intensive. This project:
+- Uses LSTM, GRU, and RNN for peptide classification
+- Achieves **up to 92.24%** classification accuracy
+- Introduces a perturbation-based method to reveal **critical sequence motifs**
+- Measures **inference time** for practical performance evaluation
+- Implements **error handling** for robust motif analysis
 
 ## 📊 Dataset
 
@@ -20,38 +32,32 @@ This project:
 - **Label**: 
   - `1` - Therapeutic
   - `0` - Non-therapeutic
-- **Sources**: Public peptide databases such as SATPdb and UniProt
-- Preprocessing includes:
-  - Cleaning invalid characters
-  - Padding and tokenization
+- **Source**: Public databases such as SATPdb and UniProt
+- **Preprocessing**:
+  - Sequence cleaning (special characters, casing)
+  - Tokenization and padding
   - Label encoding
 
 ## 🏗️ Model Architectures
 
-- **LSTM (Long Short-Term Memory)**  
-  Bidirectional model that captures long-term dependencies. Best performance in classification accuracy.
-- **GRU (Gated Recurrent Unit)**  
-  Lighter alternative to LSTM with comparable performance and reduced computational cost.
-- **Simple RNN**  
-  Baseline architecture used for performance comparison.
+- **LSTM** - Best accuracy, strong for long-range dependencies
+- **GRU** - Faster, lighter, and nearly as effective
+- **RNN** - Baseline model with strong motif identification performance
 
-All models use:
-- Embedding Layer for sequence encoding
-- Recurrent layers (LSTM/GRU/RNN)
-- Dense output layer with sigmoid activation
+All models include:
+- Embedding layer
+- Bidirectional recurrent layers (LSTM/GRU/RNN)
+- Dense output with sigmoid activation
 
 ## 🏋️‍♂️ Training & Evaluation
 
-- **Stratified Train/Test Split** (with validation)
+- **Stratified train/validation/test split**
 - **Loss Function**: Binary Cross-Entropy
 - **Optimizer**: Adam
-- **Early Stopping & Learning Rate Scheduling**
-- **Evaluation Metrics**:
-  - Accuracy
-  - Precision
-  - Recall
-  - F1-Score
-  - Confusion Matrix
+- **Regularization**: Dropout
+- **Callbacks**: EarlyStopping, ReduceLROnPlateau
+
+### 📈 Accuracy Scores
 
 | Model | Accuracy |
 |-------|----------|
@@ -59,23 +65,30 @@ All models use:
 | GRU   | 91.38%   |
 | RNN   | 90.27%   |
 
+### 🕒 Inference Time
+
+Inference time is measured for each model to evaluate their real-time applicability.
+
 ## 🧩 Critical Motif Identification
 
-We use a custom perturbation-based analysis to identify **key subsequences (motifs)** in peptides that influence the model's therapeutic predictions.
+- **Perturbation analysis** is applied to mask k-mers and analyze their impact.
+- Models return confidence scores before and after modification.
+- Top motifs are ranked based on confidence drop.
+- Results include robust **error handling** for invalid or short sequences.
 
-- Extracts k-mers from sequences
-- Applies masking/replacement (alanine scanning)
-- Measures drop in confidence to score motif relevance
-- Visualizes motifs using heatmaps and sequence logos
-
-The RNN model identified motifs in **80%** of sample peptides, demonstrating excellent interpretability.
+### 📊 Summary Output
+- Critical motif detection is performed for all therapeutic peptides.
+- **Motif Coverage**:
+  - RNN: ~80%
+  - LSTM: ~20%
+  - GRU: ~10%
 
 ## 📈 Results
 
-- LSTM outperformed GRU and RNN in accuracy and stability.
-- RNN showed best performance in identifying critical motifs.
-- Balanced performance metrics across all models.
-- All models demonstrated generalization on unseen peptide sequences.
+- **LSTM** excels in predictive accuracy.
+- **RNN** is strongest for identifying interpretable motifs.
+- Balanced precision, recall, and F1-score across models.
+- Enhanced visualizations and reporting for model performance and motif findings.
 
 ## ⚙️ How to Run
 
@@ -90,7 +103,7 @@ The RNN model identified motifs in **80%** of sample peptides, demonstrating exc
    pip install -r requirements.txt
    ```
 
-3. Run the Jupyter notebook  
+3. Launch the notebook  
    ```bash
    jupyter notebook Final_Code.ipynb
    ```
@@ -101,5 +114,5 @@ The RNN model identified motifs in **80%** of sample peptides, demonstrating exc
 - TensorFlow / Keras
 - NumPy, Pandas
 - Scikit-learn
-- Matplotlib / Seaborn
+- Matplotlib, Seaborn
 - Jupyter Notebook
