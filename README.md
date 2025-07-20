@@ -3,19 +3,6 @@
 
 This project leverages deep learning models—**LSTM**, **GRU**, and **RNN**—to accurately classify peptide sequences as therapeutic or non-therapeutic. We also implement a novel technique to identify **critical sequence motifs** that contribute to therapeutic potential, enhancing model interpretability and aiding drug discovery.
 
-## 📌 Table of Contents
-
-- [About the Project](#about-the-project)
-- [Dataset](#dataset)
-- [Model Architectures](#model-architectures)
-- [Training & Evaluation](#training--evaluation)
-- [Critical Motif Identification](#critical-motif-identification)
-- [Results](#results)
-- [How to Run](#how-to-run)
-- [Technologies Used](#technologies-used)
-- [Team Members](#team-members)
-- [License](#license)
-
 ## 🧠 About the Project
 
 Therapeutic peptides are short amino acid sequences with significant pharmaceutical value due to their high specificity and low toxicity. However, identifying such peptides is complex. Our deep learning framework automates this classification by analyzing the peptide sequences and identifying functional motifs.
